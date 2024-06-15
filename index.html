@@ -208,7 +208,9 @@
           </div>
           <button type="submit">Submit</button>
         </form>
-        <p>We respect your privacy. Your information is safe with us.</p>
+        <p class="privacyDisclaimer">
+          We respect your privacy. Your information is safe with us.
+        </p>
       </section>
       <footer>
         <svg
@@ -293,4 +295,30 @@
       </footer>
     </div>
   </body>
+  <script>
+    document.querySelector("select").addEventListener("change", function () {
+      this.style.color = this.value === "" ? "gray" : "black";
+    });
+
+    document
+      .querySelector(".responsive-form")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent the form from submitting traditionally
+
+        // Hide the form
+        this.style.display = "none";
+
+        // Select the h2 and p elements to replace
+        var header = document.querySelector(".enquire h2");
+        var paragraph = document.querySelector(".enquire p");
+
+        var privacyDisclaimer = document.querySelector(".privacyDisclaimer"); // Assuming it's the second p element under .enquire
+
+        // Replace text of h2 and p elements
+        header.innerText = "Thank You!";
+        paragraph.innerText =
+          "Thank you for your enquiry! We will get back to you soon.";
+        privacyDisclaimer.remove();
+      });
+  </script>
 </html>
